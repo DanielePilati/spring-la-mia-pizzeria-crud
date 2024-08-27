@@ -1,15 +1,15 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 	<head>	
-		<link th:replace="~{fragments :: head}"></link>		
+		<link th:replace="~{fragments/fragments :: head}"></link>		
 	</head>		
 	<body>
 <!--header-->	
-		<header th:replace="~{fragments :: header}">			
+		<header th:replace="~{fragments/fragments :: header}">			
 		</header>
 <!--main-->			
 		<main>
-			
+			<h1>questa è la homepage</h1>
 		</main>
 <!--footer-->		
 		<footer>
@@ -17,6 +17,6 @@
 		</footer>
 	</body>
 <!--scripts-->		
-	<th:block th:replace="~{fragments :: scripts}"></th>
+	<th:block th:replace="~{fragments/fragments :: scripts}"></th>
 
 </html>

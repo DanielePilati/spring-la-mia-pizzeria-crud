@@ -1,11 +1,10 @@
 package org.web.app.java.spring.model;
 
-import org.springframework.data.annotation.Id;
-
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
 import jakarta.persistence.Table;
 
 @Entity
@@ -19,6 +18,11 @@ public class Food {
 	@Column(name = "food_name", nullable=false)
 	private String name;
 	
+	private String description;
+	
+	private String imgUrl;
+	
+	@Column(name = "food_price", nullable=false)
 	private double price;
 
 	public Integer getId() {
@@ -43,5 +47,21 @@ public class Food {
 
 	public void setPrice(double price) {
 		this.price = price;
+	}
+
+	public String getDescription() {
+		return description;
+	}
+
+	public void setDescription(String description) {
+		this.description = description;
+	}
+
+	public String getImgUrl() {
+		return imgUrl;
+	}
+
+	public void setImgUrl(String imgUrl) {
+		this.imgUrl = imgUrl;
 	}
 }

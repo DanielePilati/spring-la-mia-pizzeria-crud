@@ -1,15 +1,37 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 	<head>	
-		<link th:replace="~{fragments :: head}"></link>		
+		<link th:replace="~{fragments/fragments :: head}"></link>		
 	</head>		
 	<body>
 <!--header-->	
-		<header th:replace="~{fragments :: header}">			
+		<header th:replace="~{fragments/fragments :: header}">			
 		</header>
 <!--main-->			
 		<main>
-			
+			<div class="container d-flex justify-content-center ">
+				<div class="row">
+					<th:block th:if="${foods.size > 0}">
+						<table class="table">
+						  <thead>
+						    <tr>
+						      <th scope="col">Nome</th>
+						      <th scope="col">Prezzo</th>
+						    </tr>
+						  </thead>
+						  <tbody>
+							<tr th:each="food : ${foods}">
+							  <td th:text="${food.name}"></td>
+							  <td th:text="|${food.price} €|">
+							</tr>
+						  </tbody>
+						</table>
+					</th:block>	
+					<th:block th:unless="${foods.size > 0}">
+						<h3>no foods found</h3>
+					</th:block>					
+				</div>							
+			</div>
 		</main>
 <!--footer-->		
 		<footer>
@@ -17,6 +39,6 @@
 		</footer>
 	</body>
 <!--scripts-->		
-	<th:block th:replace="~{fragments :: scripts}"></th>
+	<th:block th:replace="~{fragments/fragments :: scripts}"></th>
 
 </html>

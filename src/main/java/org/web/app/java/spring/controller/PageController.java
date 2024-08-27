@@ -10,11 +10,11 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @RequestMapping("/")
 public class PageController {
 	
-	@GetMapping("/")
+	@GetMapping()
 	public String homePage(Model model) {
 		
 		
-		return "/foods/index";
+		return "/pages/home";
 	}
 
 }

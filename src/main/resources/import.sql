@@ -1,0 +1,1 @@
+INSERT INTO foods (food_price, food_name) VALUES (9.50, 'Margherita'), (12.50, 'Boscaiola'), (12.50, 'Kebab');
