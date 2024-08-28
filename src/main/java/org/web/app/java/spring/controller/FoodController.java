@@ -8,6 +8,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.web.app.java.spring.model.Food;
 import org.web.app.java.spring.model.Search;
 import org.web.app.java.spring.repo.FoodRepository;
@@ -19,12 +20,14 @@ public class FoodController {
 	@Autowired
 	private FoodRepository repo;
 	
+	
 	@GetMapping()
 	public String index(Model model) {
 		
 		List<Food> foods = repo.findAll();
 		model.addAttribute("foods", foods);
-		
+		model.addAttribute("search", new Search());
+	
 		return "/foods/index";
 	}
 	
@@ -35,9 +38,10 @@ public class FoodController {
 		
 		return "/foods/show";
 	}
-	@GetMapping("/search/{name}")
-	public String searchName(Model model, @PathVariable("name") String name) {
+	@GetMapping("/search/")
+	public String searchName(Model model, @RequestParam("name") String name) {
 		
+		model.addAttribute("search", new Search());
 		model.addAttribute("foods", repo.findByNameContains(name));
 		
 		return "/foods/index";

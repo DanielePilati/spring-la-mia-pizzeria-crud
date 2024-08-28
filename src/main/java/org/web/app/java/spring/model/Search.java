@@ -12,14 +12,23 @@ public class Search {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id;
 	
-	private String nameToSearch;
+	private String name;
 
-	public String getNameToSearch() {
-		return nameToSearch;
+	public Integer getId() {
+		return id;
 	}
 
-	public void setNameToSearch(String nameToSearch) {
-		this.nameToSearch = nameToSearch;
+	public void setId(Integer id) {
+		this.id = id;
 	}
-	
+
+	public String getName() {
+		return name;
+	}
+
+	public void setName(String name) {
+		this.name = name;
+	}
+
+
 }
