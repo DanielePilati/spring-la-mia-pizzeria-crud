@@ -39,7 +39,6 @@ public class FoodController {
 	public String searchName(Model model, @PathVariable("name") String name) {
 		
 		model.addAttribute("foods", repo.findByNameContains(name));
-		model.addAttribute("nameSerach", new Search());
 		
 		return "/foods/index";
 	}
