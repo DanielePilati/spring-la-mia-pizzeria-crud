@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.web.app.java.spring.model.Food;
+import org.web.app.java.spring.model.Search;
 import org.web.app.java.spring.repo.FoodRepository;
 
 @Controller
@@ -30,7 +31,7 @@ public class FoodController {
 	@GetMapping("/show/{id}")
 	public String showFood(Model model, @PathVariable("id") Integer foodId) {
 		
-		model.addAttribute("food", repo.findById(foodId).get());
+		model.addAttribute("foods", repo.findById(foodId).get());
 		
 		return "/foods/show";
 	}
@@ -38,6 +39,7 @@ public class FoodController {
 	public String searchName(Model model, @PathVariable("name") String name) {
 		
 		model.addAttribute("foods", repo.findByNameContains(name));
+		model.addAttribute("nameSerach", new Search());
 		
 		return "/foods/index";
 	}
