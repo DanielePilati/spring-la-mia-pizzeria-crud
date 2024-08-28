@@ -1,44 +1,57 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
-	<head>	
-		<link th:replace="~{fragments/fragments :: head}"></link>		
-	</head>		
-	<body>
-<!--header-->	
-		<header th:replace="~{fragments/fragments :: header}">			
-		</header>
-<!--main-->			
-		<main>
-			<div class="container d-flex justify-content-center ">
-				<div class="row">
-					<th:block th:if="${foods.size > 0}">
-						<table class="table">
-						  <thead>
-						    <tr>
-						      <th scope="col">Nome</th>
-						      <th scope="col">Prezzo</th>
-						    </tr>
-						  </thead>
-						  <tbody>
-							<tr th:each="food : ${foods}">
-							  <td th:text="${food.name}"></td>
-							  <td th:text="|${food.price} €|">
+
+<head>
+	<link th:replace="~{fragments/fragments :: head}">
+	</link>
+</head>
+
+<body>
+	<!--header-->
+	<header th:replace="~{fragments/fragments :: header('foods')}">
+	</header>
+	<!--main-->
+	<main>
+		<div class="container d-flex justify-content-center ">
+			<div class="row">
+				<th:block th:if="${foods.size > 0}">
+					<h1 class="text-center"> Il Nostro Menu</h1>
+					<table class="table">
+						<thead>
+							<tr>
+								<th scope="col">#</th>
+								<th scope="col">Nome</th>
+								<th scope="col">Prezzo</th>
+								<th scope="col">Actions</th>
 							</tr>
-						  </tbody>
-						</table>
-					</th:block>	
-					<th:block th:unless="${foods.size > 0}">
-						<h3>no foods found</h3>
-					</th:block>					
-				</div>							
+						</thead>
+						<tbody>
+							<tr th:each="food : ${foods}">
+								<td th:text="${food.id}"></td>
+								<td th:text="${food.name}"></td>
+								<td th:text="|${food.price} €|">
+								<td>
+									<a th:href="@{/foods/show/{id}(id=${food.id})}" class="btn btn-primary btn-sm">Show</a>
+									<button type="button" class="btn btn-primary btn-sm">Add</button>
+									<button type="button" class="btn btn-primary btn-sm">Delete</button>
+								</td>
+							</tr>
+						</tbody>
+					</table>
+				</th:block>
+				<th:block th:unless="${foods.size > 0}">
+					<h3>no foods found</h3>
+				</th:block>
 			</div>
-		</main>
-<!--footer-->		
-		<footer>
-			
-		</footer>
-	</body>
-<!--scripts-->		
-	<th:block th:replace="~{fragments/fragments :: scripts}"></th>
+		</div>
+	</main>
+	<!--footer-->
+	<footer>
+
+	</footer>
+</body>
+<!--scripts-->
+<th:block th:replace="~{fragments/fragments :: scripts}">
+	</th>
 
 </html>

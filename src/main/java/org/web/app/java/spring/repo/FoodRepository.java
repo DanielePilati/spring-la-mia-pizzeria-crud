@@ -5,4 +5,6 @@ import org.web.app.java.spring.model.Food;
 
 public interface FoodRepository extends JpaRepository<Food, Integer>  {
 
+
+
 }
