@@ -37,9 +37,9 @@ public class FoodController {
 	@GetMapping("/search/{name}")
 	public String searchName(Model model, @PathVariable("name") String name) {
 		
-		model.addAttribute("food", repo.findByNameContaining(name));
+		model.addAttribute("foods", repo.findByNameContains(name));
 		
-		return "/foods/show";
+		return "/foods/index";
 	}
 
 }
