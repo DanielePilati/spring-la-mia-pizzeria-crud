@@ -29,16 +29,6 @@
 			</nav>
 		</header>
 		
-<!-- fragments :: search-form -->		
-		<form th:fragment="search-form('search')" class="d-flex ms-auto" th:action="@{/foods/search/}" method="get" >
-		  <input class="form-control me-2"
-		  			placeholder="Search"
-					aria-label="Search"
-					value="Search" 
-					th:field="${search.name}" >
-		  <button class="btn btn-outline-success" type="submit">Search</button>
-		</form>
-		
 				
 <!-- fragments :: scripts -->		
 		<th:block th:fragment="scripts">
