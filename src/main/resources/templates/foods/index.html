@@ -16,6 +16,7 @@
 			<div class="row">
 				<th:block th:if="${foods.size > 0}">
 					<h1 class="text-center"> Il Nostro Menu</h1>
+					<!--SEARCH-->
 					<form class="d-flex ms-auto" th:action="@{/foods/search/}" method="get" >
 					  <input class="form-control me-2"
 					  			placeholder="Search"
