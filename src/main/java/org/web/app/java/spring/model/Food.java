@@ -20,6 +20,7 @@ public class Food {
 	
 	private String description;
 	
+	@Column(name = "img_url", columnDefinition = "LONGTEXT")
 	private String imgUrl;
 	
 	@Column(name = "food_price", nullable=false)

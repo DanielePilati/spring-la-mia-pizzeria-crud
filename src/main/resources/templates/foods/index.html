@@ -15,15 +15,12 @@
 		<div class="container d-flex justify-content-center ">
 			<div class="row">
 				<th:block th:if="${foods.size > 0}">
-					<h1 class="text-center"> Il Nostro Menu</h1>
+					<h1 class="text-center mt-3"> Il Nostro Menu</h1>
 					<!--SEARCH-->
-					<form class="d-flex ms-auto" th:action="@{/foods/search/}" method="get" >
-					  <input class="form-control me-2"
-					  			placeholder="Search"
-								aria-label="Search"
-								value="Search" 
-								th:field="${search.name}" >
-					  <button class="btn btn-outline-success" type="submit">Search</button>
+					<form class="d-flex ms-auto" th:action="@{/foods/search/}" method="get">
+						<input class="form-control me-2" placeholder="Search" aria-label="Search" value="Search"
+							th:field="${search.name}">
+						<button class="btn btn-dark" type="submit">Search</button>
 					</form>
 					<table class="table">
 						<thead>
@@ -40,9 +37,10 @@
 								<td th:text="${food.name}"></td>
 								<td th:text="|${food.price} €|">
 								<td>
-									<a th:href="@{/foods/show/{id}(id=${food.id})}" class="btn btn-primary btn-sm">Show</a>
-									<button type="button" class="btn btn-primary btn-sm">Add</button>
-									<button type="button" class="btn btn-primary btn-sm">Delete</button>
+									<a th:href="@{/foods/show/{id}(id=${food.id})}"
+										class="btn btn-dark btn-sm dark">Show</a>
+									<button type="button" class="btn btn-dark btn-sm ml-2">Add</button>
+									<button type="button" class="btn btn-dark btn-sm">Delete</button>
 								</td>
 							</tr>
 						</tbody>
@@ -50,6 +48,12 @@
 				</th:block>
 				<th:block th:unless="${foods.size > 0}">
 					<h3>no foods found</h3>
+					<!--SEARCH-->
+					<form class="d-flex ms-auto" th:action="@{/foods/search/}" method="get">
+						<input class="form-control me-2" placeholder="Search" aria-label="Search" value="Search"
+							th:field="${search.name}">
+						<button class="btn btn-dark" type="submit">Search</button>
+					</form>
 				</th:block>
 			</div>
 		</div>
