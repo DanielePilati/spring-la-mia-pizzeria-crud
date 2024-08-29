@@ -47,7 +47,7 @@
 					</table>
 				</th:block>
 				<th:block th:unless="${foods.size > 0}">
-					<h3>no foods found</h3>
+					<h3 class="text-center mt-3">no foods found</h3>
 					<!--SEARCH-->
 					<form class="d-flex ms-auto" th:action="@{/foods/search/}" method="get">
 						<input class="form-control me-2" placeholder="Search" aria-label="Search" value="Search"
