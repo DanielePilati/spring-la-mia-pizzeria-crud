@@ -35,7 +35,7 @@ public class FoodController {
 	}
 
 	@GetMapping("/show/{id}")
-	public String showFood(Model model, @PathVariable("id") Integer foodId) {
+	public String show(Model model, @PathVariable("id") Integer foodId) {
 
 		model.addAttribute("foods", repo.findById(foodId).get());
 
@@ -43,7 +43,7 @@ public class FoodController {
 	}
 
 	@GetMapping("/search/")
-	public String searchName(Model model, @RequestParam("name") String name) {
+	public String searchIndex(Model model, @RequestParam("name") String name) {
 
 		model.addAttribute("search", new Food());
 		model.addAttribute("foods", repo.findByNameContains(name));
@@ -60,7 +60,7 @@ public class FoodController {
 	}
 
 	@PostMapping("/create")
-	public String add(@Valid @ModelAttribute("food") Food formFood, BindingResult br, Model model) {
+	public String store(@Valid @ModelAttribute("food") Food formFood, BindingResult br, Model model) {
 
 		if (br.hasErrors()) {
 			return "/foods/create";
