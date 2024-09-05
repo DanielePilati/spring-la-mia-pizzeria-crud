@@ -13,27 +13,24 @@
 	<!--main-->
 	<main>
 		<h1 class="text-center">Welcome To Food Creation</h1>
-		<th:block if="${#fields.hasErrors()}">
-			<ul >
-				<li th:each="err : ${#fields.allErrors()}"
-					th:text="${err}"
-					class="alert alert-danger">
+		<div class="container justify-content-center px-5">
+			<ul class="alert alert-danger">
+				<li th:each="err : ${#fields.allErrors()}" th:text="${err}">
 				</li>
 			</ul>
-		</th:block>
-		<div class="container justify-content-center px-5">
-			<form id="foods-form" method="POST" th:action="@{/foods/create}" th:object="${formModel}">
+			<form id="foods-form" method="POST" th:action="@{/foods/create}" th:object="${food}">
 				<div class="form-group">
 					<label for="name">Name:</label>
-					<input type="text" class="form-control" id="name" placeholder="Es: Margherita"  th:field="*{name}">
+					<input type="text" class="form-control" id="name" placeholder="Es: Margherita" th:field="*{name}">
 				</div>
 				<div class="form-group">
 					<label for="description">Description:</label>
-					<input type="text" class="form-control" id="description" placeholder="Es: pomodoro, mozzarella"  th:field="*{description}">
+					<input type="text" class="form-control" id="description" placeholder="Es: pomodoro, mozzarella"
+						th:field="*{description}">
 				</div>
 				<div class="form-group">
 					<label for="price">Price:</label>
-					<input type="number" class="form-control" id="price" placeholder="Enter price"  th:field="*{price}">
+					<input type="number" class="form-control" id="price" placeholder="Enter price" th:field="*{price}">
 				</div>
 				<div class="mt-3">
 					<button type="submit" class="btn btn-dark">Submit</button>
