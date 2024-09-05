@@ -13,7 +13,6 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.web.app.java.spring.model.Food;
-import org.web.app.java.spring.model.Search;
 import org.web.app.java.spring.repo.FoodRepository;
 
 import jakarta.validation.Valid;
@@ -30,7 +29,7 @@ public class FoodController {
 
 		List<Food> foods = repo.findAll();
 		model.addAttribute("foods", foods);
-		model.addAttribute("search", new Search());
+		model.addAttribute("search", new Food());
 
 		return "/foods/index";
 	}
@@ -46,7 +45,7 @@ public class FoodController {
 	@GetMapping("/search/")
 	public String searchName(Model model, @RequestParam("name") String name) {
 
-		model.addAttribute("search", new Search());
+		model.addAttribute("search", new Food());
 		model.addAttribute("foods", repo.findByNameContains(name));
 
 		return "/foods/index";

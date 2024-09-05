@@ -13,7 +13,7 @@
 	<!--main-->
 	<main>
 		<div class="container d-flex justify-content-center ">
-			<div class="row">
+			<div class="row justify-content-center">
 				<th:block th:if="${foods.size > 0}">
 					<h1 class="text-center mt-3"> Il Nostro Menu</h1>
 					<!--SEARCH-->
@@ -53,7 +53,7 @@
 				</th:block>
 				<th:block th:unless="${foods.size > 0}">
 					<h1 class="text-center mt-3">no foods found</h1>
-					<a class="col-auto btn btn-dark" th:href="@{/foods/create}">Add food</a>
+					<a class="col-auto btn btn-dark  mb-3" th:href="@{/foods/create}">Add food</a>
 					<!--SEARCH-->
 					<form class="d-flex ms-auto" th:action="@{/foods/search/}" method="get">
 						<input class="form-control me-2" placeholder="Search" aria-label="Search" value="Search"
