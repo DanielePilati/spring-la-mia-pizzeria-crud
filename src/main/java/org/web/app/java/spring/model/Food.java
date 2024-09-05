@@ -26,7 +26,7 @@ public class Food {
 	private String name;
 
 	@NotEmpty
-	@Column(name = "description", nullable = true, columnDefinition = "LONGTEXT")
+	@Column(name = "description", columnDefinition = "LONGTEXT")
 	private String description;
 
 	@Column(name = "img_url", columnDefinition = "LONGTEXT")

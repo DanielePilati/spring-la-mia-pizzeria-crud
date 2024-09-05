@@ -14,10 +14,14 @@
 	<main>
 		<h1 class="text-center">Welcome To Food Creation</h1>
 		<div class="container justify-content-center px-5">
-			<ul class="alert alert-danger">
-				<li th:each="err : ${#fields.allErrors()}" th:text="${err}">
-				</li>
-			</ul>
+			
+			<th:block th:if="${#fields.hasErrors()}">
+				<ul class="alert alert-danger">
+					<li th:each="err : ${#fields.allErrors()}" th:text="${err}">
+					</li>
+				</ul>
+			</th:block>
+			
 			<form id="foods-form" method="POST" th:action="@{/foods/create}" th:object="${food}">
 				<div class="form-group">
 					<label for="name">Name:</label>
