@@ -6,6 +6,9 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
+import jakarta.validation.constraints.NotEmpty;
+import jakarta.validation.constraints.NotNull;
+
 
 @Entity
 @Table(name = "foods")
@@ -15,16 +18,20 @@ public class Food {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id;
 	
-	@Column(name = "food_name", nullable=false)
+	@NotEmpty
+	@NotNull
+	@Column(name = "food_name", nullable = false)
 	private String name;
 	
+	@Column(name = "description", nullable = true, columnDefinition = "LONGTEXT")
 	private String description;
 	
 	@Column(name = "img_url", columnDefinition = "LONGTEXT")
 	private String imgUrl;
 	
-	@Column(name = "food_price", nullable=false)
-	private double price;
+	@NotNull
+	@Column(name = "food_price", nullable = false)
+	private Double price;
 
 	public Integer getId() {
 		return id;
@@ -42,11 +49,11 @@ public class Food {
 		this.name = name;
 	}
 
-	public double getPrice() {
+	public Double getPrice() {
 		return price;
 	}
 
-	public void setPrice(double price) {
+	public void setPrice(Double price) {
 		this.price = price;
 	}
 

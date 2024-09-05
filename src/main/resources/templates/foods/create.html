@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+	<link th:replace="~{fragments/fragments :: head}">
+	</link>
+</head>
+
+<body>
+	<!--header-->
+	<header th:replace="~{fragments/fragments :: header('foods/create')}">
+	</header>
+	<!--main-->
+	<main>
+		<h1 class="text-center">Welcome To Food Creation</h1>
+		<th:block if="${#fields.hasErrors()}">
+			<ul >
+				<li th:each="err : ${#fields.allErrors()}"
+					th:text="${err}"
+					class="alert alert-danger">
+				</li>
+			</ul>
+		</th:block>
+		<div class="container justify-content-center px-5">
+			<form id="foods-form" method="POST" th:action="@{/foods/create}" th:object="${formModel}">
+				<div class="form-group">
+					<label for="name">Name:</label>
+					<input type="text" class="form-control" id="name" placeholder="Es: Margherita"  th:field="*{name}">
+				</div>
+				<div class="form-group">
+					<label for="description">Description:</label>
+					<input type="text" class="form-control" id="description" placeholder="Es: pomodoro, mozzarella"  th:field="*{description}">
+				</div>
+				<div class="form-group">
+					<label for="price">Price:</label>
+					<input type="number" class="form-control" id="price" placeholder="Enter price"  th:field="*{price}">
+				</div>
+				<div class="mt-3">
+					<button type="submit" class="btn btn-dark">Submit</button>
+					<button type="reset" class="btn btn-dark">Reset Param</button>
+				</div>
+
+			</form>
+		</div>
+	</main>
+	<!--footer-->
+	<footer>
+
+	</footer>
+</body>
+<!--scripts-->
+<th:block th:replace="~{fragments/fragments :: scripts}">
+	</th>
+
+</html>

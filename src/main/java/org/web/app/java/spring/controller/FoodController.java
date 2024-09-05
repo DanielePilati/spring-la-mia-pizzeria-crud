@@ -5,13 +5,18 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.web.app.java.spring.model.Food;
 import org.web.app.java.spring.model.Search;
 import org.web.app.java.spring.repo.FoodRepository;
+
+import jakarta.validation.Valid;
 
 @Controller
 @RequestMapping("/foods")
@@ -46,5 +51,28 @@ public class FoodController {
 		
 		return "/foods/index";
 	}
+	
+	@GetMapping("/create")
+	public String create(Model model) {
+		
+		model.addAttribute("formModel", new Food());
+		
+		return "/foods/create";
+	}
+	
+
+	@PostMapping("/create")
+	public String add(@Valid @ModelAttribute("Food") Food formFood, Model model, BindingResult br ) {
+
+		if(br.hasErrors()) {
+			return "/foods/create";
+		}
+		
+		repo.save(formFood);
+		
+		return "redirect:/foods";
+	}
+	
+	
 
 }

@@ -17,17 +17,21 @@
 				<th:block th:if="${foods.size > 0}">
 					<h1 class="text-center mt-3"> Il Nostro Menu</h1>
 					<!--SEARCH-->
-					<form class="d-flex ms-auto" th:action="@{/foods/search/}" method="get">
-						<input class="form-control me-2" placeholder="Search" aria-label="Search" value="Search"
-							th:field="${search.name}">
-						<button class="btn btn-dark" type="submit">Search</button>
-					</form>
+					<div class="row my-3 ms-2 justify-content-end">
+						<a class="col-auto btn btn-dark" th:href="@{/foods/create}">Add food</a>
+						<form class="col-auto d-flex ms-auto" th:action="@{/foods/search/}" method="get">
+							<input class="form-control me-2" placeholder="Search" aria-label="Search" value="Search"
+								th:field="${search.name}">
+							<button class="btn btn-dark" type="submit">Search</button>
+						</form>
+					</div>
 					<table class="table">
 						<thead>
 							<tr>
 								<th scope="col">#</th>
-								<th scope="col">Nome</th>
-								<th scope="col">Prezzo</th>
+								<th scope="col">Name</th>
+								<th scope="col">Description</th>
+								<th scope="col">Price</th>
 								<th scope="col">Actions</th>
 							</tr>
 						</thead>
@@ -35,6 +39,7 @@
 							<tr th:each="food : ${foods}">
 								<td th:text="${food.id}"></td>
 								<td th:text="${food.name}"></td>
+								<td th:text="${food.description}"></td>
 								<td th:text="|${food.price} €|">
 								<td>
 									<a th:href="@{/foods/show/{id}(id=${food.id})}"
@@ -47,7 +52,8 @@
 					</table>
 				</th:block>
 				<th:block th:unless="${foods.size > 0}">
-					<h3 class="text-center mt-3">no foods found</h3>
+					<h1 class="text-center mt-3">no foods found</h1>
+					<a class="col-auto btn btn-dark" th:href="@{/foods/create}">Add food</a>
 					<!--SEARCH-->
 					<form class="d-flex ms-auto" th:action="@{/foods/search/}" method="get">
 						<input class="form-control me-2" placeholder="Search" aria-label="Search" value="Search"
