@@ -86,4 +86,5 @@ public class Food {
 	public void setImgUrl(String imgUrl) {
 		this.imgUrl = imgUrl;
 	}
+	
 }
