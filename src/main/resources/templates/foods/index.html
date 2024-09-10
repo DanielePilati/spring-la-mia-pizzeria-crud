@@ -14,8 +14,12 @@
 	<main>
 		<div class="container d-flex justify-content-center ">
 			<div class="row justify-content-center">
+				<h1 class="text-center mt-3"> Menù</h1>
+				<th:block th:if="${message != null}">
+					<div th:insert="fragments/fragments :: alert(${message},${class})">	
+					</div>
+				</th:block>
 				<th:block th:if="${foods.size > 0}">
-					<h1 class="text-center mt-3"> Menù</h1>
 					<!--SEARCH-->
 					<div class="row my-3 ms-2 justify-content-end">
 						<a class="col-auto btn btn-dark" th:href="@{/foods/create}" data-toggle="tooltip"
@@ -32,8 +36,8 @@
 								<th scope="col">#</th>
 								<th scope="col">Name</th>
 								<th scope="col">Description</th>
-								<th scope="col"  class="text-end">Price</th>
-								<th scope="col" class="text-end" >Actions</th>
+								<th scope="col" class="text-end">Price</th>
+								<th scope="col" class="text-end">Actions</th>
 							</tr>
 						</thead>
 						<tbody>
@@ -41,8 +45,8 @@
 								<td th:text="${food.id}"></td>
 								<td th:text="${food.name}"></td>
 								<td th:text="${food.description}"></td>
-								<td th:text="|${food.price}|" class="text-end">
-								<td class="text-end" >
+								<td th:text="|${food.getPriceFormatted()}|" class="text-end">
+								<td class="text-end">
 									<a th:href="@{/foods/show/{id}(id=${food.id})}" class="btn btn-white btn-sm dark"
 										data-toggle="tooltip" title="View">&#128270;</a>
 									<a th:href="@{/foods/edit/{id}(id=${food.id})}" class="btn btn-white btn-sm ml-2"
@@ -51,7 +55,8 @@
 										class="d-inline">
 										<!-- Button trigger modal -->
 										<button type="button" class="btn btn-white btn-sm ml-2" data-bs-toggle="modal"
-											th:data-bs-target="|#deleteModal-${food.id}|" data-toggle="tooltip" title="Delete">
+											th:data-bs-target="|#deleteModal-${food.id}|" data-toggle="tooltip"
+											title="Delete">
 											&#x1F5D1;
 										</button>
 
@@ -61,10 +66,11 @@
 											<div class="modal-dialog">
 												<div class="modal-content">
 													<div class="modal-header">
-														<h1 class="modal-title fs-5" id="exampleModalLabel">This action cannot be reversed!
+														<h1 class="modal-title fs-5" id="exampleModalLabel">This action
+															cannot be reversed!
 														</h1>
-														<button type="button" class="btn-close" data-bs-dismiss="modal-*{id}"
-															aria-label="Close"></button>
+														<button type="button" class="btn-close"
+															data-bs-dismiss="modal-*{id}" aria-label="Close"></button>
 													</div>
 													<div class="modal-body">
 														Are you shure you want remove "<b>[[${food.name}]]</b>"
@@ -84,7 +90,7 @@
 					</table>
 				</th:block>
 				<th:block th:unless="${foods.size > 0}">
-					<h1 class="text-center mt-3">no foods found</h1>
+					<h2 class="text-center mt-3">no foods found</h2>
 					<a class="col-auto btn btn-dark  mb-3" th:href="@{/foods/create}">Add food</a>
 					<!--SEARCH-->
 					<form class="d-flex ms-auto" th:action="@{/foods/search/}" method="get">

@@ -64,9 +64,9 @@ public class Food {
 		this.name = name;
 	}
 
-	public String getPrice() {
-		NumberFormat formatter = NumberFormat.getCurrencyInstance();
-		return formatter.format(price);
+	public Double getPrice() {
+		
+		return price;
 	}
 
 	public void setPrice(Double price) {
@@ -87,6 +87,11 @@ public class Food {
 
 	public void setImgUrl(String imgUrl) {
 		this.imgUrl = imgUrl;
+	}
+	
+	public String getPriceFormatted() {
+		NumberFormat formatter = NumberFormat.getCurrencyInstance();
+		return formatter.format(price);
 	}
 	
 }

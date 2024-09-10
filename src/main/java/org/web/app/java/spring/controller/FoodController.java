@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import org.web.app.java.spring.model.Food;
 import org.web.app.java.spring.repo.FoodRepository;
 
@@ -23,7 +24,7 @@ public class FoodController {
 	@Autowired
 	private FoodRepository repo;
 
-	//READ
+	// READ
 	@GetMapping()
 	public String index(Model model) {
 
@@ -33,7 +34,7 @@ public class FoodController {
 
 		return "/foods/index";
 	}
-	
+
 	@GetMapping("/show/{id}")
 	public String show(Model model, @PathVariable("id") Integer foodId) {
 
@@ -51,7 +52,7 @@ public class FoodController {
 		return "/foods/index";
 	}
 
-	//CREATE
+	// CREATE
 	@GetMapping("/create")
 	public String create(Model model) {
 
@@ -61,18 +62,22 @@ public class FoodController {
 	}
 
 	@PostMapping("/create")
-	public String store(@Valid @ModelAttribute("food") Food formFood, BindingResult br, Model model) {
+	public String store(@Valid @ModelAttribute("food") Food formFood, BindingResult br, Model model,
+			RedirectAttributes attributes) {
 
 		if (br.hasErrors()) {
 			return "/foods/create";
 		}
 
 		repo.save(formFood);
+		
+		attributes.addFlashAttribute("message", "Created");
+		attributes.addFlashAttribute("class", "success");
 
 		return "redirect:/foods";
 	}
-	
-	//UPDATE
+
+	// UPDATE
 	@GetMapping("/edit/{id}")
 	public String edit(Model model, @PathVariable("id") Integer foodId) {
 
@@ -80,28 +85,33 @@ public class FoodController {
 
 		return "/foods/edit";
 	}
-	
+
 	@PostMapping("/edit/{id}")
-	public String update(@Valid @ModelAttribute("food") Food formFood, BindingResult br, Model model) {
+	public String update(@Valid @ModelAttribute("food") Food formFood, BindingResult br, Model model,
+			RedirectAttributes attributes) {
 
 		if (br.hasErrors()) {
 			return "/foods/edit";
 		}
-		
+
 		repo.save(formFood);
+
+		attributes.addFlashAttribute("message", "Updated");
+		attributes.addFlashAttribute("class", "warning");
 
 		return "redirect:/foods";
 	}
-	
-	//DELETE
+
+	// DELETE
 	@GetMapping("/delete/{id}")
-	public String delete(Model model, @PathVariable("id") Integer foodId) {
+	public String delete(Model model, @PathVariable("id") Integer foodId, RedirectAttributes attributes) {
 
 		repo.deleteById(foodId);
 
+		attributes.addFlashAttribute("message", "Eliminated");
+		attributes.addFlashAttribute("class", "danger");
+
 		return "redirect:/foods";
 	}
-	
-	
 
 }
