@@ -12,7 +12,7 @@
 	</header>
 	<!--main-->
 	<main>
-		<h1 class="text-center">Welcome To Food Creation</h1>
+		<h1 class="text-center">Editing <b>[[${food.name}]]</b></h1>
 		<div class="container justify-content-center px-5">
 
 			<form id="foods-edit-form" method="POST" th:action="@{/foods/edit/{id}(id=${food.id})}" th:object="${food}">

@@ -14,19 +14,51 @@
 	<main>
 		<div class="container d-flex justify-content-center pt-5">
 			<div class="row">
-				<div class="card" style="width: 18rem;" th:object="${foods}">
+				<div class="card" style="width: 20rem;" th:object="${foods}">
 					<img class="card-img-top p-2" th:src="*{imgUrl}" alt="Pizza Image">
 					<div class="card-body">
-						<h5 class="card-title">Nome: [[*{name}]]</h5>
-						<p class="card-text">Descrizione: [[*{description}]]
-							lorem ipsum eccetera eccetera
+						<h5 class="card-title">[[*{name}]]</h5>
+						<p class="card-text">[[*{description}]]
 						</p>
 					</div>
 					<ul class="list-group list-group-flush">
-						<li class="list-group-item">Prezzo: [[*{price}]]</li>
+						<li class="list-group-item text-end">[[*{price}]]</li>
 					</ul>
 					<div class="card-body">
-						<a th:href="@{/foods}" class="card-link btn btn-dark">Torna al Menù</a>
+						<a th:href="@{/foods}" class="card-link btn btn-dark">Back to Menù</a>
+						<a th:href="@{/foods/edit/{id}(id=*{id})}" class="btn btn-dark ml-2" data-toggle="tooltip"
+							title="Edit">Edit</a>
+						<form method="GET" th:action="@{/foods/delete/{id}(id=*{id})}" class="d-inline">
+							<!-- Button trigger modal -->
+							<button type="button" class="btn btn-dark  ml-2" data-bs-toggle="modal"
+								th:data-bs-target="|#deleteModal-*{id}|">
+								Delete
+							</button>
+
+							<!-- Modal -->
+							<div class="modal fade" th:id="|deleteModal-*{id}|" tabindex="-1"
+								aria-labelledby="exampleModalLabel" aria-hidden="true">
+								<div class="modal-dialog">
+									<div class="modal-content">
+										<div class="modal-header">
+											<h1 class="modal-title fs-5" id="exampleModalLabel">This action cannot be
+												reversed!
+											</h1>
+											<button type="button" class="btn-close" data-bs-dismiss="modal-*{id}"
+												aria-label="Close"></button>
+										</div>
+										<div class="modal-body">
+											Are you shure you want remove "<b>[[*{name}]]</b>"
+										</div>
+										<div class="modal-footer">
+											<button type="button" class="btn btn-success"
+												data-bs-dismiss="modal">Close</button>
+											<button type="submit" class="btn btn-danger">Continue</button>
+										</div>
+									</div>
+								</div>
+							</div>
+						</form>
 					</div>
 				</div>
 			</div>

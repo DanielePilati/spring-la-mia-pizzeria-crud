@@ -1,5 +1,6 @@
 package org.web.app.java.spring.model;
 
+import java.text.NumberFormat;
 import java.time.Instant;
 
 import org.hibernate.annotations.UpdateTimestamp;
@@ -63,8 +64,9 @@ public class Food {
 		this.name = name;
 	}
 
-	public Double getPrice() {
-		return price;
+	public String getPrice() {
+		NumberFormat formatter = NumberFormat.getCurrencyInstance();
+		return formatter.format(price);
 	}
 
 	public void setPrice(Double price) {
