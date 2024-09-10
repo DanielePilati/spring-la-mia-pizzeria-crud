@@ -14,8 +14,11 @@
 	<main>
 		<div class="container d-flex justify-content-center pt-5">
 			<div class="row">
+				<!--CARD-->
 				<div class="card" style="width: 20rem;" th:object="${foods}">
+					<!--IMG-->
 					<img class="card-img-top p-2" th:src="*{imgUrl}" alt="Pizza Image">
+					<!--BODY-->
 					<div class="card-body">
 						<h5 class="card-title">[[*{name}]]</h5>
 						<p class="card-text">[[*{description}]]
@@ -24,21 +27,24 @@
 					<ul class="list-group list-group-flush">
 						<li class="list-group-item text-end">[[*{getPriceFormatted()}]]</li>
 					</ul>
+					<!--BUTTONS-->
 					<div class="card-body">
+						<!--BACK-->
 						<a th:href="@{/foods}" class="card-link btn btn-dark">Back to Menù</a>
+						<!--EDIT-->
 						<a th:href="@{/foods/edit/{id}(id=*{id})}" class="btn btn-dark ml-2" data-toggle="tooltip"
 							title="Edit">Edit</a>
+						<!--DELETE-->
 						<form method="GET" th:action="@{/foods/delete/{id}(id=*{id})}" class="d-inline">
 							<!-- Button trigger modal -->
 							<button type="button" class="btn btn-dark  ml-2" data-bs-toggle="modal"
 								th:data-bs-target="|#deleteModal-*{id}|">
 								Delete
 							</button>
-
 							<!-- Modal -->
 							<div class="modal fade" th:id="|deleteModal-*{id}|" tabindex="-1"
 								aria-labelledby="exampleModalLabel" aria-hidden="true">
-								<div class="modal-dialog">
+								<div class="modal-dialog modal-dialog-centered">
 									<div class="modal-content">
 										<div class="modal-header">
 											<h1 class="modal-title fs-5" id="exampleModalLabel">This action cannot be

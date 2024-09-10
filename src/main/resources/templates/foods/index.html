@@ -15,10 +15,14 @@
 		<div class="container d-flex justify-content-center ">
 			<div class="row justify-content-center">
 				<h1 class="text-center mt-3"> Menù</h1>
+				
+				<!--ALERT-->
 				<th:block th:if="${message != null}">
-					<div th:insert="fragments/fragments :: alert(${message},${class})">	
+					<div th:insert="fragments/fragments :: alert(${message},${class})">
 					</div>
 				</th:block>
+
+				<!--CONDITION TRUE-->
 				<th:block th:if="${foods.size > 0}">
 					<!--SEARCH-->
 					<div class="row my-3 ms-2 justify-content-end">
@@ -30,7 +34,9 @@
 							<button class="btn btn-dark" type="submit">Submit</button>
 						</form>
 					</div>
-					<table class="table">
+					<!--TABLE-->
+					<table class="table table-striped table-dark">
+						<!--T-HEAD-->
 						<thead>
 							<tr>
 								<th scope="col">#</th>
@@ -40,17 +46,22 @@
 								<th scope="col" class="text-end">Actions</th>
 							</tr>
 						</thead>
+						<!--T-BODY-->
 						<tbody>
 							<tr th:each="food : ${foods}">
 								<td th:text="${food.id}"></td>
 								<td th:text="${food.name}"></td>
 								<td th:text="${food.description}"></td>
 								<td th:text="|${food.getPriceFormatted()}|" class="text-end">
+								<!--BUTTONS-->
 								<td class="text-end">
-									<a th:href="@{/foods/show/{id}(id=${food.id})}" class="btn btn-white btn-sm dark"
+									<!--SHOW-->
+									<a th:href="@{/foods/show/{id}(id=${food.id})}" class="btn btn-sm "
 										data-toggle="tooltip" title="View">&#128270;</a>
-									<a th:href="@{/foods/edit/{id}(id=${food.id})}" class="btn btn-white btn-sm ml-2"
+									<!--EDIT-->
+									<a th:href="@{/foods/edit/{id}(id=${food.id})}" class="btn btn-sm ml-2"
 										data-toggle="tooltip" title="Edit">&#9998;</a>
+									<!--DELETE-->
 									<form method="GET" th:action="@{/foods/delete/{id}(id=${food.id})}"
 										class="d-inline">
 										<!-- Button trigger modal -->
@@ -59,11 +70,10 @@
 											title="Delete">
 											&#x1F5D1;
 										</button>
-
 										<!-- Modal -->
 										<div class="modal fade" th:id="|deleteModal-${food.id}|" tabindex="-1"
 											aria-labelledby="exampleModalLabel" aria-hidden="true">
-											<div class="modal-dialog">
+											<div class="modal-dialog modal-dialog-centered">
 												<div class="modal-content">
 													<div class="modal-header">
 														<h1 class="modal-title fs-5" id="exampleModalLabel">This action
@@ -89,6 +99,8 @@
 						</tbody>
 					</table>
 				</th:block>
+
+				<!--CONDITION FALSE-->
 				<th:block th:unless="${foods.size > 0}">
 					<h2 class="text-center mt-3">no foods found</h2>
 					<a class="col-auto btn btn-dark  mb-3" th:href="@{/foods/create}">Add food</a>
@@ -99,6 +111,7 @@
 						<button class="btn btn-dark" type="submit">Search</button>
 					</form>
 				</th:block>
+				
 			</div>
 		</div>
 	</main>
