@@ -18,7 +18,7 @@
 					<h1 class="text-center mt-3"> Il Nostro Menu</h1>
 					<!--SEARCH-->
 					<div class="row my-3 ms-2 justify-content-end">
-						<a class="col-auto btn btn-dark" th:href="@{/foods/create}">Add food</a>
+						<a class="col-auto btn btn-dark" th:href="@{/foods/create}">&#43; &#127829;</a>
 						<form class="col-auto d-flex ms-auto" th:action="@{/foods/search/}" method="get">
 							<input class="form-control me-2" placeholder="Search" aria-label="Search" value="Search"
 								th:field="${search.name}">
@@ -43,11 +43,39 @@
 								<td th:text="|${food.price} €|">
 								<td>
 									<a th:href="@{/foods/show/{id}(id=${food.id})}"
-										class="btn btn-dark btn-sm dark">Show</a>
+										class="btn btn-white btn-sm dark">&#128270;</a>
 									<a th:href="@{/foods/edit/{id}(id=${food.id})}"
-										class="btn btn-dark btn-sm ml-2">Edit</a>
-									<form method="GET" th:action="@{/foods/delete/{id}(id=${food.id})}" class="d-inline">
-										<button type="submit" class="btn btn-dark btn-sm ml-2">Delete</button>
+										class="btn btn-white btn-sm ml-2">&#9998;</a>
+									<form method="GET" th:action="@{/foods/delete/{id}(id=${food.id})}"
+										class="d-inline">
+										<!-- Button trigger modal -->
+										<button type="button" class="btn btn-white btn-sm ml-2" data-bs-toggle="modal"
+											data-bs-target="#exampleModal">
+											 &#x1F5D1;
+										</button>
+
+										<!-- Modal -->
+										<div class="modal fade" id="exampleModal" tabindex="-1"
+											aria-labelledby="exampleModalLabel" aria-hidden="true">
+											<div class="modal-dialog">
+												<div class="modal-content">
+													<div class="modal-header">
+														<h1 class="modal-title fs-5" id="exampleModalLabel">Modal title
+														</h1>
+														<button type="button" class="btn-close" data-bs-dismiss="modal"
+															aria-label="Close"></button>
+													</div>
+													<div class="modal-body">
+														...
+													</div>
+													<div class="modal-footer">
+														<button type="button" class="btn btn-success"
+															data-bs-dismiss="modal">Close</button>
+														<button type="button" class="btn btn-danger">DELETE</button>
+													</div>
+												</div>
+											</div>
+										</div>
 									</form>
 								</td>
 							</tr>
