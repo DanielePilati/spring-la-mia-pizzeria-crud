@@ -1,7 +1,6 @@
 package org.web.app.java.spring.controller;
 
 import java.util.List;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -24,6 +23,7 @@ public class FoodController {
 	@Autowired
 	private FoodRepository repo;
 
+	//READ
 	@GetMapping()
 	public String index(Model model) {
 
@@ -33,7 +33,7 @@ public class FoodController {
 
 		return "/foods/index";
 	}
-
+	
 	@GetMapping("/show/{id}")
 	public String show(Model model, @PathVariable("id") Integer foodId) {
 
@@ -43,7 +43,7 @@ public class FoodController {
 	}
 
 	@GetMapping("/search/")
-	public String searchIndex(Model model, @RequestParam("name") String name) {
+	public String search(Model model, @RequestParam("name") String name) {
 
 		model.addAttribute("search", new Food());
 		model.addAttribute("foods", repo.findByNameContains(name));
@@ -51,6 +51,7 @@ public class FoodController {
 		return "/foods/index";
 	}
 
+	//CREATE
 	@GetMapping("/create")
 	public String create(Model model) {
 
@@ -70,5 +71,37 @@ public class FoodController {
 
 		return "redirect:/foods";
 	}
+	
+	//UPDATE
+	@GetMapping("/edit/{id}")
+	public String edit(Model model, @PathVariable("id") Integer foodId) {
+
+		model.addAttribute("food", repo.findById(foodId).get());
+
+		return "/foods/edit";
+	}
+	
+	@PostMapping("/edit/{id}")
+	public String update(@Valid @ModelAttribute("food") Food formFood, BindingResult br, Model model) {
+
+		if (br.hasErrors()) {
+			return "/foods/edit";
+		}
+		
+		repo.save(formFood);
+
+		return "redirect:/foods";
+	}
+	
+	//DELETE
+	@GetMapping("/delete/{id}")
+	public String delete(Model model, @PathVariable("id") Integer foodId) {
+
+		repo.deleteById(foodId);
+
+		return "redirect:/foods";
+	}
+	
+	
 
 }

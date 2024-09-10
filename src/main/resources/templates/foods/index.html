@@ -44,8 +44,11 @@
 								<td>
 									<a th:href="@{/foods/show/{id}(id=${food.id})}"
 										class="btn btn-dark btn-sm dark">Show</a>
-									<button type="button" class="btn btn-dark btn-sm ml-2">Add</button>
-									<button type="button" class="btn btn-dark btn-sm">Delete</button>
+									<a th:href="@{/foods/edit/{id}(id=${food.id})}"
+										class="btn btn-dark btn-sm ml-2">Edit</a>
+									<form method="GET" th:action="@{/foods/delete/{id}(id=${food.id})}" class="d-inline">
+										<button type="submit" class="btn btn-dark btn-sm ml-2">Delete</button>
+									</form>
 								</td>
 							</tr>
 						</tbody>
