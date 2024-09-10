@@ -96,6 +96,7 @@ public class FoodController {
 
 		repo.save(formFood);
 
+		attributes.addFlashAttribute("food", repo.findById(formFood.getId()).get());
 		attributes.addFlashAttribute("message", "Updated");
 		attributes.addFlashAttribute("class", "warning");
 

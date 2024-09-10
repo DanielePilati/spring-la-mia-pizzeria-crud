@@ -14,7 +14,8 @@
 	<main>
 		<div class="container d-flex justify-content-center ">
 			<div class="row justify-content-center">
-				<h1 class="text-center mt-3"> Menù</h1>
+				
+				<h1 class="text-center"> Menù</h1>
 				
 				<!--ALERT-->
 				<th:block th:if="${message != null}">
@@ -76,13 +77,13 @@
 											<div class="modal-dialog modal-dialog-centered">
 												<div class="modal-content">
 													<div class="modal-header">
-														<h1 class="modal-title fs-5" id="exampleModalLabel">This action
-															cannot be reversed!
+														<h1 class="modal-title fs-5" id="exampleModalLabel">&#x26A0; This action
+															cannot be reversed! &#x26A0;
 														</h1>
 														<button type="button" class="btn-close"
 															data-bs-dismiss="modal-*{id}" aria-label="Close"></button>
 													</div>
-													<div class="modal-body">
+													<div class="modal-body text-start">
 														Are you shure you want remove "<b>[[${food.name}]]</b>"
 													</div>
 													<div class="modal-footer">

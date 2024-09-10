@@ -35,36 +35,7 @@
 						<a th:href="@{/foods/edit/{id}(id=*{id})}" class="btn btn-dark ml-2" data-toggle="tooltip"
 							title="Edit">Edit</a>
 						<!--DELETE-->
-						<form method="GET" th:action="@{/foods/delete/{id}(id=*{id})}" class="d-inline">
-							<!-- Button trigger modal -->
-							<button type="button" class="btn btn-dark  ml-2" data-bs-toggle="modal"
-								th:data-bs-target="|#deleteModal-*{id}|">
-								Delete
-							</button>
-							<!-- Modal -->
-							<div class="modal fade" th:id="|deleteModal-*{id}|" tabindex="-1"
-								aria-labelledby="exampleModalLabel" aria-hidden="true">
-								<div class="modal-dialog modal-dialog-centered">
-									<div class="modal-content">
-										<div class="modal-header">
-											<h1 class="modal-title fs-5" id="exampleModalLabel">This action cannot be
-												reversed!
-											</h1>
-											<button type="button" class="btn-close" data-bs-dismiss="modal-*{id}"
-												aria-label="Close"></button>
-										</div>
-										<div class="modal-body">
-											Are you shure you want remove "<b>[[*{name}]]</b>"
-										</div>
-										<div class="modal-footer">
-											<button type="button" class="btn btn-success"
-												data-bs-dismiss="modal">Close</button>
-											<button type="submit" class="btn btn-danger">Continue</button>
-										</div>
-									</div>
-								</div>
-							</div>
-						</form>
+						<form th:replace="~{fragments/fragments :: modal-food(${foods}, 'delete')}">
 					</div>
 				</div>
 			</div>

@@ -42,8 +42,12 @@
 				</div>
 				<!--BUTTONS-->
 				<div class="mt-3">
-					<button type="submit" class="btn btn-dark">Save Changes</button>
-					<button type="reset" class="btn btn-dark">Reset Param</button>
+					<!--RESET-->
+					<a th:href="@{/foods/edit/{id}(id = *{id})}" class="btn btn-dark">Reset Param</a>
+					<!--BACK-->
+					<a th:href="@{/foods}" class="card-link btn btn-dark">Back to Menù</a>
+					<!--EDIT-->
+					<form th:replace="~{fragments/fragments :: modal-food(${food}, 'edit')}">
 				</div>
 
 			</form>
