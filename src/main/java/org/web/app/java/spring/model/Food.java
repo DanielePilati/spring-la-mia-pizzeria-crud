@@ -11,6 +11,7 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
+import jakarta.validation.constraints.Min;
 import jakarta.validation.constraints.NotEmpty;
 import jakarta.validation.constraints.NotNull;
 
@@ -34,6 +35,7 @@ public class Food {
 	private String imgUrl;
 
 	@NotNull
+	@Min(0)
 	@Column(name = "food_price", nullable = false)
 	private Double price;
 
